@@ -1,6 +1,14 @@
+#!/usr/bin/python3
 import os
 from flask import Flask, request, render_template
+from config import config
+from baza import listakomend
+
+params = config("setti","main")
+sciezka=params["pathtoui"]
+ip=params["ip"]
 app = Flask(__name__)
+
 
 @app.route('/')
 def index():
@@ -13,9 +21,9 @@ def DoZwrotu(odbior):
 @app.route('/',methods=['POST'])
 def WyslijCMD():
   print ('Kliknięto przycisk.')
-  text = request.form['text']
-  processed_text = text.upper()
-  os.system('python /home/piotr/sender.py "'+processed_text+'"')
+  processed_text = request.form['text']
+  
+  os.system('python '+ sciezka + 'sender-LQArmUI.py "'+processed_text+'"')
   
   return DoZwrotu(processed_text)
 
@@ -24,11 +32,16 @@ def WyslijCMD():
 def WyslijInne():
   print ('Odsylacz')
   processed_text='<una;>'
-  os.system('python /home/piotr/sender.py "'+processed_text+'"')
+  os.system('python '+ sciezka + 'sender-LQArmUI.py "'+processed_text+'"')
 
   return DoZwrotu(processed_text)
 
+@app.route('/komd/')
+def Komendy():
+  listakomend()
+  return "Z"
 
 if __name__ == '__main__':
-  app.run(host="192.168.1.13",debug=True)
+  app.run(host=ip,debug=True)
+
 

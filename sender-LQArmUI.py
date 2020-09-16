@@ -2,14 +2,26 @@
 
 import sys
 import serial
+import os
+from config import config
 
-#init serial port and bound
-# bound rate on two ports must be the same
 ser = serial.Serial('/dev/ttyACM0', 9600)
-print(ser.portstr)
+os.system('clear')
+print("")
+print("-------------------------------------------")
+print("  LQArmUI v0.2 - Moduł przekazujący")
+print("  Urządzenie: "+ser.portstr)
+print("-------------------------------------------")
+print("  Argumenty wejściowe: "+ str(len(sys.argv)-1))
+print("")
+if len(sys.argv)-1>0:
+     newcmd = sys.argv[1]
+     print("  Wysyłam do Arduino"+ newcmd)
+     ## Wyślij do Arduino
+     ser.write(newcmd.encode())
 
-#send data via serial port
-newcmd = sys.argv[1]
-print(newcmd)
-ser.write(newcmd.encode())
+print("")
+print("  Nie ma nic więcej do roboty...")
+print("-------------------------------------------")
+print("")
 ser.close()
