@@ -4,7 +4,7 @@ from flask import Flask, request, render_template
 from config import config
 from baza import listakomend
 
-params = config("setti","main")
+params = config("settings.ini","main")
 sciezka=params["pathtoui"]
 ip=params["ip"]
 app = Flask(__name__)
