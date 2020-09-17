@@ -1,0 +1,28 @@
+<!doctype html>
+
+<html>
+  <head>
+    {% block head %}
+    <title>{% block title %}{% endblock %} - LQ Arm UI - Witamy w interfejsie</title>
+  <meta charset=utf-8> </head>
+    {% endblock %}
+    <body>
+    <center>
+<table align="center" border="1" width="50%"><tr>
+    <td> <a href="/">Wyślij</a></td><td> <a href="/lista">Lista poleceń</a></td><td> <a href="/">Statystyki</a></td><td> <a href="/">Ustawienia slotów</a></td><td> <a href="/">Ustawienia drinków</a></td><td> HEJ</td>
+</tr>
+<tr height="550"><td colspan="6">
+        <div id="content">{% block content %}{% endblock %}</div>
+    
+    </td></tr>
+<tr><td colspan="6">
+    <div id="footer">
+        {% block footer %}
+        &copy; LQ Arm UI v0.3 by Piotr Kupczyk (dajmosster@gmail.com)
+        {% endblock %}
+      </div>
+    </td></tr>
+
+</table>
+</body>
+</html>

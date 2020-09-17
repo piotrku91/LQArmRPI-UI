@@ -1,23 +1,13 @@
 <!doctype html>
-<style>
-.btn-link {
-    border: none;
-    outline: none;
-    background: none;
-    cursor: pointer;
-    color: #0000EE;
-    padding: 0;
-    text-decoration: underline;
-    font-family: inherit;
-    font-size: inherit;
-}
-</style>
 
 
-<head><title>Test</title> 
-    <meta charset=utf-8> </head>
-    {% block body %}
-        <h1>My Website</h1>
+{% extends "layout_p1.html" %}
+{% block title %}Polecenie wysłane{% endblock %}
+
+{% block content %}
+
+
+
 {% for wpis in db %}
 <table border=1 width=100%
 ><tr><td bgcolor=silver><font color=blue><h2>{{wpis[0]}}.{{wpis[1]}} </h2></font></td></tr>
@@ -28,3 +18,4 @@
 {% endfor %}
 
     {% endblock %}
+   

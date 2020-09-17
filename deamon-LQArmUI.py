@@ -7,9 +7,10 @@ import requests as req
 params = config("settings.ini","main")
 devadd = params["serial_dev_add"]
 devbr = params["serial_dev_br"]
+ip=params["ip"]
 
 ser = serial.Serial(devadd, devbr, timeout=1)
-r = req.post('http://192.168.1.13:5000/db/insert_cmd',data={'n_cmd': 'a','n_op': 'b','n_ex': 'c'})
+r = req.post('http://'+ip+':5000/db/insert_cmd',data={'n_cmd': 'a','n_op': 'b','n_ex': 'c'})
 while True:
 
     serBarCode = ser.readline()

@@ -31,29 +31,32 @@ def WyslijInne(cmd=None):
   print ('Odsylacz')
   processed_text=cmd
   os.system('python '+ sciezka + 'sender-LQArmUI.py "'+processed_text+'"')
-  return DoZwrotu(processed_text)
+  return render_template("pol.html",polecenie=processed_text)
 
 @app.route('/db/insert',methods=['POST'])
 def insert():
   tabela = request.form['tab']
   kolumny = request.form['kol']
   wartosci = request.form['val']
-  Zapytanie('INSERT INTO '+tabela+' '+kolumny+' '+wartosci+';')
-  return "dodano"
+  a=Zapytanie('INSERT INTO '+tabela+' '+kolumny+' '+wartosci+';')
+  return a
 
 @app.route('/db/insert_cmd',methods=['POST'])
 def insert_cmd():
-  n_cmd = request.form['n_cmd']
-  n_opis = request.form['n_op']
-  n_ex = request.form['n_ex']
-  a=Zapytanie("INSERT INTO komendy (naglowek, opis, przyklad) VALUES ('"+n_cmd+"','"+n_opis+"','"+n_ex+"');" )
+  NewV="('"+request.form['n_cmd']+"','"+request.form['n_op']+"','"+request.form['n_ex']+"');"
+  a=Zapytanie(format("INSERT INTO komendy (naglowek, opis, przyklad) VALUES {}".format(NewV)))
 
   return a
 
-@app.route('/db/lista',methods=["GET","POST"])
+@app.route('/lista',methods=["GET","POST"])
 def Komendy():
   db = ZapytanieZrzut('SELECT * FROM komendy ORDER BY id')
   return render_template("lista.html",db=db)
+
+
+@app.route('/layout')
+def laytest():
+  return render_template("layout_p1.html")
 
 if __name__ == '__main__':
   app.run(host=ip,debug=True)
