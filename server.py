@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 import os
-from flask import Flask, request, render_template
+from flask import Flask, request, abort, redirect, url_for, render_template
 from config import config
-from baza import listakomend
+from baza import ZapytanieZrzut
+from baza import Zapytanie
 
 params = config("settings.ini","main")
 sciezka=params["pathtoui"]
@@ -22,24 +23,37 @@ def DoZwrotu(odbior):
 def WyslijCMD():
   print ('Kliknięto przycisk.')
   processed_text = request.form['text']
-  
-  os.system('python '+ sciezka + 'sender-LQArmUI.py "'+processed_text+'"')
-  
-  return DoZwrotu(processed_text)
+  return redirect(url_for("WyslijInne",cmd=processed_text))
 
 
-@app.route('/una/')
-def WyslijInne():
+@app.route('/tosender/<cmd>')
+def WyslijInne(cmd=None):
   print ('Odsylacz')
-  processed_text='<una;>'
+  processed_text=cmd
   os.system('python '+ sciezka + 'sender-LQArmUI.py "'+processed_text+'"')
-
   return DoZwrotu(processed_text)
 
-@app.route('/komd/')
+@app.route('/db/insert',methods=['POST'])
+def insert():
+  tabela = request.form['tab']
+  kolumny = request.form['kol']
+  wartosci = request.form['val']
+  Zapytanie('INSERT INTO '+tabela+' '+kolumny+' '+wartosci+';')
+  return "dodano"
+
+@app.route('/db/insert_cmd',methods=['POST'])
+def insert_cmd():
+  n_cmd = request.form['n_cmd']
+  n_opis = request.form['n_op']
+  n_ex = request.form['n_ex']
+  a=Zapytanie("INSERT INTO komendy (naglowek, opis, przyklad) VALUES ('"+n_cmd+"','"+n_opis+"','"+n_ex+"');" )
+
+  return a
+
+@app.route('/db/lista',methods=["GET","POST"])
 def Komendy():
-  listakomend()
-  return "Z"
+  db = ZapytanieZrzut('SELECT * FROM komendy ORDER BY id')
+  return render_template("lista.html",db=db)
 
 if __name__ == '__main__':
   app.run(host=ip,debug=True)

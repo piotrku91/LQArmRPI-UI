@@ -9,7 +9,7 @@ def connect():
    
     try:
         
-        params = config("setti","postgresql")
+        params = config("settings.ini","postgresql")
 
        
         print('Łączenie z bazą danych PostgreSQL')
@@ -38,20 +38,44 @@ def disconnect(c):
     
       
 
-def listakomend():
+def ZapytanieZrzut(Tresc):
     conn = connect()
     cur = conn.cursor()
-    cur.execute('SELECT * FROM komendy ORDER BY id')
+    cur.execute(Tresc)
 
-    print("Liczba komend :", cur.rowcount)
-    row = cur.fetchone()
-
-    while row is not None:
-        print(row[1])
-            
-        row = cur.fetchone()
+    print("Zapytanie: "+Tresc)
+    print("Liczba zwróconych wierszy: ", cur.rowcount)
+    row = cur.fetchall()
     cur.close()
     disconnect(conn)
+
+
+    return row
+
+def Zapytanie(Tresc):
+    try:
+        conn = connect()
+        cur = conn.cursor()
+        cur.execute(Tresc)
+
+        print("Zapytanie: "+Tresc)
+        # id = cur.fetchone()[0]
+        print(conn.commit())
+        cur.close()
+        disconnect(conn)
+
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+
+    return "z"
+    
+
+  #  while row is not None:
+     #   print(row[1])
+            
+       # row = cur.fetchone()
+    #cur.close()
+   # disconnect(conn)
    ## return 1
 
 
