@@ -30,8 +30,14 @@ if len(sys.argv)-1>0:
                          break
                     print("  Wysyłam do Arduino "+ userkom)
           ## Wyślij do Arduino
-          ser.write(userkom.encode())
-          r = req.post('http://'+ip+':5000/db/insert_logcmd',data={'log_newcmd': userkom.encode(), 'log_infc': 0})
+                    ser.write(userkom.encode())
+                    r = req.post('http://'+ip+':5000/db/insert_logcmd',data={'log_newcmd': userkom, 'log_infc': 2})
+
+          if sys.argv[1]=="-u":
+               newcmd = sys.argv[2]
+               print("  Wysyłam do Arduino"+ newcmd)
+               r = req.post('http://'+ip+':5000/db/insert_logcmd',data={'log_newcmd': newcmd, 'log_infc': 2})
+               ser.write(newcmd.encode())
 
      else:
           newcmd = sys.argv[1]

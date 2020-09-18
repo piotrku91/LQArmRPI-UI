@@ -23,23 +23,18 @@ def DoZwrotu(odbior):
 def WyslijCMD():
   print ('Kliknięto przycisk.')
   processed_text = request.form['text']
-  return redirect(url_for("WyslijInne",cmd=processed_text))
+  return redirect(url_for("WyslijInne",cmd=processed_text,u=1))
 
 
-@app.route('/tosender/<cmd>')
-def WyslijInne(cmd=None):
-  print ('Odsylacz')
+@app.route('/tosender/<cmd>/<int:u>')
+def WyslijInne(cmd=None,u=0):
+  print (u)
   processed_text=cmd
-  os.system('python '+ sciezka + 'sender-LQArmUI.py "'+processed_text+'"')
+  if u==1:
+    os.system('python '+ sciezka + 'sender-LQArmUI.py -u "'+processed_text+'"')
+  else:
+    os.system('python '+ sciezka + 'sender-LQArmUI.py "'+processed_text+'"')
   return redirect(url_for("Konsola"))
-
-@app.route('/db/insert',methods=['POST'])
-def insert():
-  tabela = request.form['tab']
-  kolumny = request.form['kol']
-  wartosci = request.form['val']
-  a=Zapytanie('INSERT INTO '+tabela+' '+kolumny+' '+wartosci+';')
-  return a
 
 @app.route('/db/insert_cmd',methods=['POST'])
 def insert_cmd():
@@ -64,7 +59,7 @@ def Konsola():
 
 @app.route('/test',methods=["GET","POST"])
 def test():
-  db = ZapytanieZrzut(' WITH k AS (SELECT * FROM konsola ORDER BY data DESC LIMIT 10) SELECT * FROM k ORDER BY data ASC')
+  db = ZapytanieZrzut(" WITH k AS (SELECT id,to_char(data,'DD/MM HH12:MI:SS') ,polecenie, interfejs, data FROM konsola ORDER BY data DESC LIMIT 20) SELECT * FROM k ORDER BY data ASC")
   return render_template("pol.html",db=db)
 
 
