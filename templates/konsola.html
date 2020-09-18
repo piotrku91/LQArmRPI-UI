@@ -1,0 +1,34 @@
+<!doctype html>
+
+
+{% extends "layout_p1.html" %}
+{% block title %}Polecenie wysłane{% endblock %}
+
+{% block content %}
+
+<script src="{{ url_for('static', filename = 'prototype.js') }}"></script>
+<script>
+new Ajax.PeriodicalUpdater('test', '/test',
+{
+method: 'get',
+frequency: 0.2,
+decay: 5
+});
+</script>
+
+
+
+<br><br>
+<div id="test">
+    <p>Brak obs�ugi JavaScript lub strona kt�ra chcesz wy�wietli� nie istnieje</p>
+    </div>
+
+<form action="/" method="POST">
+    <input name="text" width="600">i
+    <input name="przycisk" type="submit" value="Wyslij polecenie"/><br><br>
+     
+</form>
+
+
+
+{% endblock %}

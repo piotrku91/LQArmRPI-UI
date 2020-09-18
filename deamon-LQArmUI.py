@@ -10,14 +10,16 @@ devbr = params["serial_dev_br"]
 ip=params["ip"]
 
 ser = serial.Serial(devadd, devbr, timeout=1)
-r = req.post('http://'+ip+':5000/db/insert_cmd',data={'n_cmd': 'a','n_op': 'b','n_ex': 'c'})
+
 while True:
 
     serBarCode = ser.readline()
     
     if len(serBarCode) >= 1:
-        print(serBarCode.decode("utf-8"))
-
+        Odczytana=serBarCode.decode("utf-8")
+        print(Odczytana)
+        r = req.post('http://'+ip+':5000/db/insert_logcmd',data={'log_newcmd': Odczytana, 'log_infc': 1})
+       
 
        # print(serBarCode.decode("utf-8")[len(serBarCode)-3] )
         #if serBarCode.decode("utf-8")[len(serBarCode)-3] == "a":

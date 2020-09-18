@@ -4,9 +4,11 @@ import sys
 import serial
 import os
 from config import config
+import requests as req
 params = config("settings.ini","main")
 devadd = params["serial_dev_add"]
 devbr = params["serial_dev_br"]
+ip=params["ip"]
 
 
 ser = serial.Serial(devadd, devbr)
@@ -29,13 +31,14 @@ if len(sys.argv)-1>0:
                     print("  Wysyłam do Arduino "+ userkom)
           ## Wyślij do Arduino
           ser.write(userkom.encode())
+          r = req.post('http://'+ip+':5000/db/insert_logcmd',data={'log_newcmd': userkom.encode(), 'log_infc': 0})
 
      else:
           newcmd = sys.argv[1]
           print("  Wysyłam do Arduino"+ newcmd)
           ## Wyślij do Arduino
           ser.write(newcmd.encode())
-
+          r = req.post('http://'+ip+':5000/db/insert_logcmd',data={'log_newcmd': newcmd.encode() , 'log_infc': 0})
 print("")
 print("  Nie ma nic więcej do roboty...")
 print("-------------------------------------------")
