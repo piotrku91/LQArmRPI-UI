@@ -5,7 +5,6 @@
 {% block title %}Polecenie wysłane{% endblock %}
 
 {% block content %}
-
 <script src="{{ url_for('static', filename = 'prototype.js') }}"></script>
 <script>
 new Ajax.PeriodicalUpdater('test', '/test',
@@ -16,16 +15,13 @@ decay: 0
 });
 </script>
 
-
-
-<br><br>
 <div id="test">
     <p>Brak obs�ugi JavaScript lub strona kt�ra chcesz wy�wietli� nie istnieje</p>
     </div>
 
 <form action="/" method="POST">
-    <input name="text" size="75%">
-    <input name="przycisk" type="submit" value=">>" size="30%"><br><br>
+    <input name="text" size="150">
+    <input name="przycisk" type="submit" value=">>" size="50">
      
 </form>
 

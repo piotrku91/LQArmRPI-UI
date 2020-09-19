@@ -3,58 +3,24 @@
 
 {% block content %}
 <style>
-#zwykla {
-    font-family: Verdana, Geneva, sans-serif;
-    font-size: 14px;
-    letter-spacing: -0.8px;
-    word-spacing: 0px;
-    color: #000000;
-    font-weight: 700;
-    text-decoration: none solid rgb(68, 68, 68);
-    font-style: normal;
-    font-variant: normal;
-    text-transform: none;
-    }
-#user {
-    font-family: Verdana, Geneva, sans-serif;
-    font-size: 14px;
-    letter-spacing: -0.8px;
-    word-spacing: 0px;
-    color: #CC3434;
-    font-weight: 700;
-    text-decoration: none solid rgb(68, 68, 68);
-    font-style: normal;
-    font-variant: normal;
-    text-transform: none;
-    }
-#proc {
-    font-family: Verdana, Geneva, sans-serif;
-    font-size: 14px;
-    letter-spacing: -0.8px;
-    word-spacing: 0px;
-    color: #1E1654;
-    font-weight: 700;
-    text-decoration: none solid rgb(68, 68, 68);
-    font-style: normal;
-    font-variant: normal;
-    text-transform: none;
-    }
+
 
 </style>
 
-<table bgcolor="silver" width="100%"><tr><td>
+<table align="top" bgcolor="silver" border="0" width="100%">
 
-{% for wpis in db %}
-&nbsp;
-{% if wpis[3] == 0 %} <a href="tosender/{{wpis[2]}}/1"><img src="{{ url_for('static', filename = 'cmp.png') }}" width="12" height="12"></a> <div id="user" style="padding:1px; display: inline-block;"> {{wpis[1]}} &nbsp;  {% endif %}
-{% if wpis[3] == 1 %} <a href="tosender/{{wpis[2]}}/1"><img src="{{ url_for('static', filename = 'cpu.png') }}" width="12" height="12"></a> <div id="proc" style="padding: 1px; display: inline-block;">{{wpis[1]}} &nbsp; {% endif %}
-{% if wpis[3] == 2 %} <a href="tosender/{{wpis[2]}}/1"><img src="{{ url_for('static', filename = 's.png') }}" width="12" height="12"></a> <div id="zwykla" style="padding: 1px; display: inline-block;">  {{wpis[1]}} &nbsp; {% endif %} 
-{{wpis[2]}} </div><br>
-
-
-
-{% endfor %}
-</td></tr></table>
+    {% for wpis in db %}
+    
+    &nbsp;
+    {% if wpis[3] == 0 %}<tr><td bgcolor="#EEF2EF"> <a href="tosender/{{wpis[2]}}/1"><img src="{{ url_for('static', filename = 'cmp.png') }}" width="12" height="12"></a> <div id="ui" style="padding:1px; display: inline-block;"> {{wpis[1]}} &nbsp;  {% endif %}
+    {% if wpis[3] == 1 %}<tr><td bgcolor="#E1E1E1"> <a href="tosender/{{wpis[2]}}/1"><img src="{{ url_for('static', filename = 'cpu.png') }}" width="12" height="12"></a> <div id="proc" style="padding: 1px; display: inline-block;">{{wpis[1]}} &nbsp; {% endif %}
+    {% if wpis[3] == 2 %}<tr><td bgcolor="#AAAEAA"><a href="tosender/{{wpis[2]}}/1"><img src="{{ url_for('static', filename = 's.png') }}" width="12" height="12"></a> <div id="zwykla" style="padding: 1px; display: inline-block;">  {{wpis[1]}} &nbsp; {% endif %} 
+    {{wpis[2]}} </div>
+</td></tr>
+    
+    
+    {% endfor %}
+    </table>
 
 {% endblock %}
 

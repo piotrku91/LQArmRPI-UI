@@ -38,8 +38,8 @@ def disconnect(c):
     
       
 
-def ZapytanieZrzut(Tresc):
-    conn = connect()
+def ZapytanieZrzut(Tresc,ObjektBazy):
+    conn = ObjektBazy
     cur = conn.cursor()
     cur.execute(Tresc)
 
@@ -47,7 +47,7 @@ def ZapytanieZrzut(Tresc):
     print("Liczba zwróconych wierszy: ", cur.rowcount)
     row = cur.fetchall()
     cur.close()
-    disconnect(conn)
+    
 
 
     return row

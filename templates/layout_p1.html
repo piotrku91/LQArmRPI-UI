@@ -3,22 +3,157 @@
 <html>
   <head>
     {% block head %}
+    
     <title>{% block title %}{% endblock %} - LQ Arm UI - Witamy w interfejsie</title>
-  <meta charset=utf-8> </head>
+  <meta charset=utf-8> 
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
     {% endblock %}
-    <body>
-    <center>
-<table align="center" border="1" width="50%"><tr>
-    <td> <a href="/">Wyślij</a></td><td> <a href="/lista">Lista poleceń</a></td><td> <a href="/">Statystyki</a></td><td> <a href="/">Ustawienia slotów</a></td><td> <a href="/">Ustawienia drinków</a></td><td> HEJ</td>
+    <style type="text/css">
+      body {
+        margin-top: 0px; 
+        margin-right: 0px; 
+        margin-bottom: 0px; 
+        margin-left: 0px;   
+        height:100%;
+        width:100%;
+        margin:0;
+        padding:0;
+
+      }
+      table, th {
+      border: 1px solid black;
+      border-collapse: collapse;
+      margin-top: 0px; 
+      margin-right: 0px; 
+      margin-bottom: 0px; 
+      margin-left: 0px;
+      }
+      td,tr {
+      border: 0px solid black;
+      border-collapse: collapse;
+      margin-top: 0px; 
+      margin-right: 0px; 
+      margin-bottom: 0px; 
+      margin-left: 0px;
+      }
+
+      #zwykla {
+        font-family: Verdana, Geneva, sans-serif;
+        font-size: 14px;
+        letter-spacing: -0.8px;
+        word-spacing: 0px;
+        color: #9E3F09;
+        font-weight: 700;
+        text-decoration: none solid rgb(68, 68, 68);
+        font-style: normal;
+        font-variant: normal;
+        text-transform: none;
+        }
+    #ui {
+        font-family: Verdana, Geneva, sans-serif;
+        font-size: 14px;
+        letter-spacing: -0.8px;
+        word-spacing: 0px;
+        color: #CC3434;
+        font-weight: 700;
+        text-decoration: none solid rgb(68, 68, 68);
+        font-style: normal;
+        font-variant: normal;
+        text-transform: none;
+        }
+    #proc {
+        font-family: Verdana, Geneva, sans-serif;
+        font-size: 14px;
+        letter-spacing: -0.8px;
+        word-spacing: 0px;
+        color: #1E1654;
+        font-weight: 700;
+        text-decoration: none solid rgb(68, 68, 68);
+        font-style: normal;
+        font-variant: normal;
+        text-transform: none;
+
+        
+        }
+
+        /* Chrome, Safari and Opera syntax */
+:-webkit-full-screen {
+  background-color: yellow;
+}
+
+/* Firefox syntax */
+:-moz-full-screen {
+  background-color: yellow;
+}
+
+/* IE/Edge syntax */
+:-ms-fullscreen {
+  background-color: yellow;
+}
+
+/* Standard syntax */
+:fullscreen {
+  background-color: yellow;
+}
+
+/* Style the button */
+button {
+  padding: 20px;
+  font-size: 20px;
+}
+    
+    
+    </style>
+<script>
+  var elem = document.documentElement;
+  function openFullscreen() {
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.mozRequestFullScreen) { /* Firefox */
+      elem.mozRequestFullScreen();
+    } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+      elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) { /* IE/Edge */
+      elem.msRequestFullscreen();
+    }
+  }
+  
+  function closeFullscreen() {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.mozCancelFullScreen) {
+      document.mozCancelFullScreen();
+    } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) {
+      document.msExitFullscreen();
+    }
+  }
+
+
+</script>
+
+
+
+
+    <body bgcolor="#003C8A">
+     
+<table align="left" width="100%" bgcolor="#3575CA"><tr>
+  {% for dzial in zakladki %}
+    <td> <a href="{{dzial[2]}}"><div id="Przycisk{{dzial[0]}}" style="padding: 20px;">{{dzial[1]}}</div></a></td>
+    {% endfor %}
 </tr>
-<tr height="550"><td colspan="6">
-        <div id="content">{% block content %}{% endblock %}</div>
+<tr><td colspan="6" align="top">
+        {% block content %}{% endblock %}
     
     </td></tr>
 <tr><td colspan="6">
     <div id="footer">
         {% block footer %}
         &copy; LQ Arm UI v0.3 by Piotr Kupczyk (dajmosster@gmail.com)
+        <button id="btn1" onclick="openFullscreen();">Open Fullscreen</button>
+<button onclick="closeFullscreen();">Close Fullscreen</button>
         {% endblock %}
       </div>
     </td></tr>
