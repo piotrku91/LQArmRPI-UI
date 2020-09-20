@@ -22,7 +22,7 @@
 
       }
       table, th {
-      border: 1px solid black;
+      border: 0px solid black;
       border-collapse: collapse;
       margin-top: 0px; 
       margin-right: 0px; 
@@ -158,20 +158,20 @@ button {
 
 
 
-    <body bgcolor="#3575CA">
+    <body bgcolor="#3562CC">
      
 <table align="left" width="100%" bgcolor="#3575CA"><tr>
   {% for dzial in zakladki %}
     <td> <center><a href="{{dzial[2]}}"><div class="e" id="Przycisk{{dzial[0]}}" style="padding: 20px;"><img src="{{ url_for('static', filename = dzial[3]) }}" width="32" height="32"><br>{{dzial[1]}}</div></a></center></td>
     {% endfor %}
 </tr>
-<tr><td colspan="2" align="top">
+<tr><td colspan="3" align="top">
         {% block content %}{% endblock %}
     
     </td></tr>
-<tr><td colspan="2">
+<tr><td colspan="3" bgcolor="#3562CC">
     <div id="footer">
-        {% block footer %}
+        {% block footer %}<br>
         &copy; LQ Arm UI v0.3 by Piotr Kupczyk (dajmosster@gmail.com)
        <!--  <button id="btn1" onclick="openFullscreen();">Open Fullscreen</button>
         <button onclick="closeFullscreen();">Close Fullscreen</button> -->
