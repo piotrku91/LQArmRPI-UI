@@ -8,7 +8,7 @@ def config(filename='settings.ini', section='postgresql'):
     # read config file
     parser.read(filename)
 
-    # get section, default to postgresql
+    # get section, default to cpostgresql
     db = {}
     if parser.has_section(section):
         params = parser.items(section)

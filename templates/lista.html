@@ -5,10 +5,14 @@
 {% block title %}Lista dostępnych poleceń{% endblock %}
 {% block content %}
 
+<table align="top" bgcolor="silver"  width="100%">
 {% for wpis in db %}
-<table align="top" bgcolor="silver" border="0" width="100%"><tr><td bgcolor=silver><font color="blue"><h2>{{wpis[0]}}.{{wpis[1]}} </h2></font></td></tr>
-<tr><td><br>{{wpis[2]}}<br></td></tr>
-<tr> <td>Przyklad: <font color="red"> {{wpis[3]}}</font></td></tr></table><br>
+
+<tr><td bgcolor="silver" style="border: 1px solid black"><font color="blue"><h3>{{wpis[0]}}.{{wpis[1]}} </h3></font></td><td>{{wpis[2]}}<br></td></tr>
+<tr> <td colspan="2">Przyklad: <font color="red"> {{wpis[3]}}</font></td></tr>
+
 {% endfor %}
+</table>
+
     {% endblock %}
    

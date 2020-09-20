@@ -38,6 +38,27 @@
       margin-left: 0px;
       }
 
+      a {
+        color: black;
+        text-decoration: none;
+        font-style: normal;
+        font-variant: normal;
+
+      }
+
+      .e:hover{
+   background-color:#ccff33;
+   color:black;
+   font-style: normal;
+  font-variant: normal;
+      }
+       .e  {
+         background-color:#3562CC;
+         color:white;
+         font-style: normal;
+        font-variant: normal;
+}
+
       #zwykla {
         font-family: Verdana, Geneva, sans-serif;
         font-size: 14px;
@@ -137,23 +158,23 @@ button {
 
 
 
-    <body bgcolor="#003C8A">
+    <body bgcolor="#3575CA">
      
 <table align="left" width="100%" bgcolor="#3575CA"><tr>
   {% for dzial in zakladki %}
-    <td> <a href="{{dzial[2]}}"><div id="Przycisk{{dzial[0]}}" style="padding: 20px;">{{dzial[1]}}</div></a></td>
+    <td> <center><a href="{{dzial[2]}}"><div class="e" id="Przycisk{{dzial[0]}}" style="padding: 20px;"><img src="{{ url_for('static', filename = dzial[3]) }}" width="32" height="32"><br>{{dzial[1]}}</div></a></center></td>
     {% endfor %}
 </tr>
-<tr><td colspan="6" align="top">
+<tr><td colspan="2" align="top">
         {% block content %}{% endblock %}
     
     </td></tr>
-<tr><td colspan="6">
+<tr><td colspan="2">
     <div id="footer">
         {% block footer %}
         &copy; LQ Arm UI v0.3 by Piotr Kupczyk (dajmosster@gmail.com)
-        <button id="btn1" onclick="openFullscreen();">Open Fullscreen</button>
-<button onclick="closeFullscreen();">Close Fullscreen</button>
+       <!--  <button id="btn1" onclick="openFullscreen();">Open Fullscreen</button>
+        <button onclick="closeFullscreen();">Close Fullscreen</button> -->
         {% endblock %}
       </div>
     </td></tr>
