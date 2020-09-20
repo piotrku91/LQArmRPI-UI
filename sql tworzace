@@ -1,0 +1,7 @@
+CREATE TABLE Drink(id_drinka BIGSERIAL PRIMARY KEY, nazwa_schemat VARCHAR(100), LQ1_id INT, LQ1_ilosc INT,LQ2_id INT, LQ2_ilosc INT, LQ3_id INT, LQ3_ilosc INT, LQ4_id INT, LQ4_ilosc INT);
+
+INSERT INTO Lq_slot(kod_napoju,nazwa_napoju,Ilosc) VALUES ('VOD1','Wódka',500);
+CREATE TABLE Lq_slot(id BIGSERIAL PRIMARY KEY, kod_napoju VARCHAR(4) NOT NULL, nazwa_napoju VARCHAR(100) NOT NULL,Ilosc INT);
+CREATE TABLE ZakladkiUI(id BIGSERIAL PRIMARY KEY, nazwa VARCHAR(100), link VARCHAR(100), ikona VARCHAR(100));
+CREATE TABLE konsola(id BIGSERIAL PRIMARY KEY, data TIMESTAMP, polecenie VARCHAR(1000) NOT NULL, interfejs INT NOT NULL);
+CREATE TABLE naczynia (id BIGSERIAL PRIMARY KEY, uzytkownik_login VARCHAR(64), akt_drink VARCHAR(64), nalany BOOLEAN);

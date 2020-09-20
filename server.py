@@ -15,7 +15,11 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-  return render_template('index.html')
+  baza = connect()
+  zakladki = ZapytanieZrzut('SELECT * FROM zakladkiui ORDER BY id', baza)
+  naczynia_db = ZapytanieZrzut('SELECT * FROM naczynia ORDER BY id', baza)
+  disconnect(baza)
+  return render_template('index.html',zakladki=zakladki,naczynia_db=naczynia_db)
 
 
 @app.route('/',methods=['POST'])
