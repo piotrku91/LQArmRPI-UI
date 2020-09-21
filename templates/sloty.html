@@ -26,7 +26,7 @@
         <tr><h2>REWOLWER 2</h2></tr>
         <tr> {% for lqo in lq %} <td>
             <!-- NACZYNIE 1 -->
-            {% if lqo[0] < 4 %}
+            {% if ((lqo[0] < 7) and (lqo[0] > 3)) %}
             <div class="e" id="Kielich0" style="padding: 50px; text-align: center;   height: 70px; width: 70px;" >
                 <img src="{{ url_for('static', filename = 'bottle.png') }}" width="32" height="32">
                 
@@ -41,7 +41,7 @@
             <tr><h2>REWOLWER 3</h2></tr>
             <tr> {% for lqo in lq %} <td>
                 <!-- NACZYNIE 1 -->
-                {% if lqo[0] < 4 %}
+                {% ((lqo[0] < 10) and (lqo[0] > 6)) %}
                 <div class="e" id="Kielich0" style="padding: 50px; text-align: center;   height: 70px; width: 70px;" >
                     <img src="{{ url_for('static', filename = 'bottle.png') }}" width="32" height="32">
                     
