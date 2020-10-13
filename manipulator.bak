@@ -1,0 +1,539 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 11.8
+-- Dumped by pg_dump version 11.8
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: drink; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.drink (
+    id_drinka bigint NOT NULL,
+    nazwa_schemat character varying(100),
+    lq1_kod character varying(4),
+    lq1_ilosc integer,
+    lq2_kod character varying(4),
+    lq2_ilosc integer,
+    lq3_kod character varying(4),
+    lq3_ilosc integer,
+    lq4_kod character varying(4),
+    lq4_ilosc integer
+);
+
+
+ALTER TABLE public.drink OWNER TO postgres;
+
+--
+-- Name: drink_id_drinka_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.drink_id_drinka_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.drink_id_drinka_seq OWNER TO postgres;
+
+--
+-- Name: drink_id_drinka_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.drink_id_drinka_seq OWNED BY public.drink.id_drinka;
+
+
+--
+-- Name: komendy; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.komendy (
+    id bigint NOT NULL,
+    naglowek character varying(50),
+    opis text,
+    przyklad text,
+    grupa integer
+);
+
+
+ALTER TABLE public.komendy OWNER TO postgres;
+
+--
+-- Name: komendy_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.komendy_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.komendy_id_seq OWNER TO postgres;
+
+--
+-- Name: komendy_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.komendy_id_seq OWNED BY public.komendy.id;
+
+
+--
+-- Name: konsola; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.konsola (
+    id bigint NOT NULL,
+    data timestamp without time zone,
+    polecenie character varying(1000) NOT NULL,
+    interfejs integer NOT NULL
+);
+
+
+ALTER TABLE public.konsola OWNER TO postgres;
+
+--
+-- Name: konsola_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.konsola_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.konsola_id_seq OWNER TO postgres;
+
+--
+-- Name: konsola_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.konsola_id_seq OWNED BY public.konsola.id;
+
+
+--
+-- Name: lq_slot; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.lq_slot (
+    id bigint NOT NULL,
+    kod_napoju character varying(4) NOT NULL,
+    nazwa_napoju character varying(100) NOT NULL,
+    ilosc integer
+);
+
+
+ALTER TABLE public.lq_slot OWNER TO postgres;
+
+--
+-- Name: lq_slot_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.lq_slot_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.lq_slot_id_seq OWNER TO postgres;
+
+--
+-- Name: lq_slot_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.lq_slot_id_seq OWNED BY public.lq_slot.id;
+
+
+--
+-- Name: naczynia; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.naczynia (
+    id bigint NOT NULL,
+    uzytkownik_login character varying(64),
+    akt_drink character varying(64),
+    nalany boolean
+);
+
+
+ALTER TABLE public.naczynia OWNER TO postgres;
+
+--
+-- Name: naczynia_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.naczynia_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.naczynia_id_seq OWNER TO postgres;
+
+--
+-- Name: naczynia_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.naczynia_id_seq OWNED BY public.naczynia.id;
+
+
+--
+-- Name: zakladkiui; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.zakladkiui (
+    id bigint NOT NULL,
+    nazwa character varying(100),
+    link character varying(100),
+    ikona character varying(100)
+);
+
+
+ALTER TABLE public.zakladkiui OWNER TO postgres;
+
+--
+-- Name: zakladkiui_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.zakladkiui_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.zakladkiui_id_seq OWNER TO postgres;
+
+--
+-- Name: zakladkiui_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.zakladkiui_id_seq OWNED BY public.zakladkiui.id;
+
+
+--
+-- Name: drink id_drinka; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.drink ALTER COLUMN id_drinka SET DEFAULT nextval('public.drink_id_drinka_seq'::regclass);
+
+
+--
+-- Name: komendy id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.komendy ALTER COLUMN id SET DEFAULT nextval('public.komendy_id_seq'::regclass);
+
+
+--
+-- Name: konsola id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.konsola ALTER COLUMN id SET DEFAULT nextval('public.konsola_id_seq'::regclass);
+
+
+--
+-- Name: lq_slot id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.lq_slot ALTER COLUMN id SET DEFAULT nextval('public.lq_slot_id_seq'::regclass);
+
+
+--
+-- Name: naczynia id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.naczynia ALTER COLUMN id SET DEFAULT nextval('public.naczynia_id_seq'::regclass);
+
+
+--
+-- Name: zakladkiui id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.zakladkiui ALTER COLUMN id SET DEFAULT nextval('public.zakladkiui_id_seq'::regclass);
+
+
+--
+-- Data for Name: drink; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.drink (id_drinka, nazwa_schemat, lq1_kod, lq1_ilosc, lq2_kod, lq2_ilosc, lq3_kod, lq3_ilosc, lq4_kod, lq4_ilosc) FROM stdin;
+1	default	VOD1	50	BRAK	0	BRAK	0	BRAK	0
+\.
+
+
+--
+-- Data for Name: komendy; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.komendy (id, naglowek, opis, przyklad, grupa) FROM stdin;
+30	<t			\N
+47	<de			\N
+50	<pin_om			\N
+51	<pin_st			\N
+52	<pin_md			\N
+53	<pin_os			\N
+54	<help			\N
+21	<srv_test	Wykonuje sprawdzenie statusu ruchu w sterowniku serw Maestro ServoMicroController. Pin testowy 7.	<srv_test;>	\N
+22	<srv_skr	Uruchamia skrypt w sterowniku serw by wykonać dane ruchy. 	<srv_skr;0;> (<srv_skr;LICZBA	\N
+2	<sett_l	Wczytuje ustawienia, stany naczyń z pliku konfiguracyjnego	<sett_l;>	\N
+3	<n_sch_set	Ustawia schemat dla danego naczynia. Wczytany zostanie z pliku *.drn jeśli takowy istnieje. 	<n_sch_set;0;burbon;> (<n_sch_set;LICZBA;TEKST)	\N
+4	<n_poj_set	Ustawia maksymalną pojemność naczynia na podaną w 2 parametrze. 	<n_poj_set;0;50;> (<n_poj_set;LICZBA;LICZBA)	\N
+5	<n_set	Ustawia wszystkie ustawienia dla danego naczynia jednoczesnie. Kolejność parametrów: Numer naczynia,Pojemność naczynia, Status blokady, Nazwa schematu 	<n_set;0;50;0;burbon;> (<n_set;LICZBA;LICZBA;LICZBA;TEKST)	\N
+6	<n_i	Zrzuca wszystkie dane o wszystkich naczyniach.  	<n_i;>	\N
+7	<n_l	Blokuje podane naczynie.  	<n_l;0;> (<n_l;LICZBA)	\N
+8	<n_la	Blokuje wszystkie naczynia  	<n_la;>	\N
+9	<n_un	Odblokowuje podane naczynie.  	<n_un;0;> (<n_un;LICZBA)	\N
+10	<n_una	Odblokowuje wszystkie naczynia  	<n_una;>	\N
+23	<srv_stp	Próbuje wykonać polewanie dla danego naczynia. (typowo dla skryptów) 	<srv_stp;0;> (<srv_stp;LICZBA	\N
+11	<lq_s	Zmienia ustawienia danego napoju w podanym slocie. Kolejność parametrów: Numer naczynia, Identyfikator napoju (4 znaki), Pojemność.	<lq_s;0;VOD1;1528;> (<lq_s;LICZBA;LICZBA;TEKST)	\N
+12	<lq_i	Zrzuca wszystkie dane o wszystkich napojach rozmieszczonych w slotach.  	<lq_i;>	\N
+13	<sch_i	Zrzuca opis drinka aktualnie wczytanego do wykonania.  	<sch_i;>	\N
+14	<sch_it	Zrzuca opis drinka nowo utworzonego drinka.  	<sch_it;>	\N
+24	<srv_hand	Ręczny przesuw osi ramienia roboczego do zadanego miejsca. <br>Kolejność parametrów: Numer serwa, Nowa pozycja, Nowa prędkość, Nowa akceleracja.<br>Jeżeli prędkość lub akceleracja są równe 0 pozostają takie jakie były wcześniej. 	<srv_hand;0;4400;0;0;> (<srv_hand;LICZBA;LICZBA;LICZBA;LICZBA	\N
+25	<srv_hi	Ręczny przesuw osi ramienia roboczego do zadanego miejsca (inkrementalnie). <br>Kolejność parametrów: Numer serwa, Wartość przesunięcia pozycji 	<srv_hi;0;300;> (<srv_hi;LICZBA;LICZBA;	\N
+16	<sch_del	Usuwa definicje drinka nieodwracalnie.  	<sch_del;>	\N
+15	<sch_new	Tworzy i zapisuje nowego drinka do pliku *.drn.<br> Kolejność parametrów: Nazwa drinka, Id napoju 1, Ilość napoju 1, Id napoju 2, Ilość napoju 2; Id napoju 3, Ilosc Napoju 3, Id napoju 4; Ilość napoju 4. <br> Jeżeli ilość napojów w drinku jest mniejsza niż 4 w dane puste miejsce wpisujemy BRAK. 	<sch_new;nowiutki;VOD3;22;WHS;53;BRAK;0;BRAK;0;> (<sch_new;TEKST,TEKST,LICZBA,TEKST,LICZBA,TEKST,LICZBA,TEKST,LICZBA)	\N
+17	<srv_nalsin	Hybrydowa funkcja wykonująca pełny cykl jazdy do naczynia oraz nalewania. Wersja dla podanego numeru naczynia	<srv_nalsin;0;> (<srv_nalsin;LICZBA;)	\N
+31	<sd_ls	Zrzuca listę plików znajdujących się na karcie SD. 	<sd_ls;	\N
+18	<srv_nalall	Hybrydowa funkcja wykonująca pełny cykl jazdy do naczyń i nalewania. Wersja dla wszystkich naczyn pokolei.	<srv_nalall;> (<srv_nalall;)	\N
+19	<srv_home	Funkcja powrotu ramienia nalewającego do pozycji domowej.	<srv_home;> (<srv_home;)	\N
+20	<srv_esc	Funkcja bezpiecznego odjazdu od miejsca nalewania	<srv_esc;> (<srv_esc;)	\N
+1	<sett_s	Zapisuje ustawienia, stany naczyń do pliku konfiguracyjnego	<sett_s;>	\N
+32	<proc_s	Zmiana flagi programu na dany stan.  	<proc_s;1;> (<proc_s;LICZBA)	\N
+33	<clq	Ustawia odliczanie po ktorym nastąpi nalanie do wszystkich naczyń (np. 6 minut)  	<clq;6;> (<clq;LICZBA)	\N
+27	<srv_sets	Ustawienie nowej prędkości i akceleracji dla danego serwa (osi) <br>Kolejność parametrów: Numer serwa, Nowa prędkość, Nowa akceleracja 	<srv_sets;0;30;4;> (<srv_sets;LICZBA;LICZBA;LICZBA	\N
+26	<srv_setsa	Ustawienie nowej prędkości i akceleracji dla wszystkich serw (osi) <br>Kolejność parametrów: Nowa prędkość, Nowa akceleracja 	<srv_setsa;30;4;> (<srv_setsa;LICZBA;LICZBA;)	\N
+28	<srv_stat	Zrzuca pozycje wszystkich serw (osi) 	<srv_stat;> (<srv_stat)	\N
+29	<sd_f	Zaczyna odczytywać i zrzucać zawartość pliku np. plik.txt 	<sd_f;plik.txt;> (<sd_f;TEKST)	\N
+34	<echo	Zwraca spowrotem wysłany tekst (typowo dla skryptów)  	<echo;Opóźnienie;> (<echo;TEKST)	\N
+35	<scr_rd	Odczytuje i zaczyna wykonywać skrypt z pliku *.scr. Parametr podawany bez rozszerzenia. 	<scr_rd;kalib;> (<scr_rd;TEKST)	\N
+36	<scr_rs	Resetuje pozycje odczytywanego skryptu (przewija do początku).  	<scr_rs;> (<scr_rs	\N
+37	<proc_d	Wykonuje podane w parametrze opóźnienie (typowo dla skryptów)  	<proc_d;500;> (<proc_d;LICZBA)	\N
+38	<scr_co++	Inkrementuje licznik wykonań skryptu.  	<scr_co++;>	\N
+39	<scr_co--	Dekrementuje licznik wykonań skryptu.  	<scr_co--;>	\N
+43	<l_g	Ustawia szybko zielony kolor podświetlenia dla podanego naczynia.  	<l_g;0;> (<l_g;LICZBA;>	\N
+41	<scr_cor	Zeruje licznik wykonań skryptu.  	<scr_cor;>	\N
+40	<scr_cos	Ustawia licznik wykonań skryptu na podany parametr.  	<scr_cos;1;> (<scr_cos;LICZBA;>	\N
+42	<scr_comax	Ustawia maksymalną wartość licznika wykonań skryptu. Po wykonaniu wszystkich pętli program wraca do normalnego trybu nieskryptowego.  	<scr_comax;3;> (<scr_comax;LICZBA;>	\N
+45	<l_off	Wyłącza całkowicie podświetlenie dla danego naczynia.  	<l_off;0;> (<l_off;LICZBA;>	\N
+44	<l_r	Ustawia szybko czerwony kolor podświetlenia dla podanego naczynia.  	<l_r;0;> (<l_r;LICZBA;>	\N
+46	<cls	Wyłącza całkowicie podświetlenie dla wszystkich naczyn.  	<cls;> (<cls;>	\N
+49	<lm	Wyłącza tryb cichy.  	<lm;> (<lm;>	\N
+48	<sm	Uruchamia tryb cichy (Przesyłane są tylko najważniejsze dane zrzutowe dla kontaktu z interfejsem sterującym. ) 	<sm;> (<sm;>	\N
+60	<srv_test			\N
+61	<ooo 	coś tam coś tam	ełeełe	\N
+62	<ooo 	coś tam coś tam	ełeełe	\N
+64	<ooo 	coś tam coś tam	ełeełe	\N
+66	<ooo 	coś tam coś tam	ełeełe	\N
+69	a	b	c	\N
+73	a	b	c	\N
+74	a	b	c	\N
+75	a	b	c	\N
+76	a	b	c	\N
+77	a	b	c	\N
+78	a	b	c	\N
+\.
+
+
+--
+-- Data for Name: konsola; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.konsola (id, data, polecenie, interfejs) FROM stdin;
+516	2020-09-19 21:06:59.023761	hehe	2
+517	2020-09-19 21:07:00.347153	tak - hehe\r\n	1
+518	2020-09-19 21:10:54.538748	fgfd	2
+519	2020-09-19 21:10:56.12399	tak - fgfd\r\n	1
+520	2020-09-19 21:29:25.216398	tak - fgfd	2
+521	2020-09-19 21:29:26.583206	tak - tak - fgfd\r\n	1
+522	2020-09-19 21:34:00.478851	tak - fgfd	2
+523	2020-09-19 21:34:01.827028	tak - tak - fgfd\r\n	1
+524	2020-09-19 21:37:21.541548	rotunda	2
+525	2020-09-19 21:37:22.633031	tak - rotunda\r\n	1
+526	2020-09-20 10:41:03.394502	** Deamon - LQ Arm UI - uruchomiony...	0
+527	2020-09-20 10:41:31.204714	** Deamon - LQ Arm UI - uruchomiony...	0
+528	2020-09-20 10:49:05.467336	grzegorz	2
+529	2020-09-20 10:49:06.816381	tak - grzegorz\r\n	1
+530	2020-09-20 10:53:30.830369	kotek	2
+531	2020-09-20 10:53:32.057056	tak - kotek\r\n	1
+532	2020-09-20 10:53:50.669252	ziomek	2
+533	2020-09-20 10:53:52.041042	tak - ziomek\r\n	1
+534	2020-09-20 10:54:04.937832	a	2
+535	2020-09-20 10:54:06.517225	tak - a\r\n	1
+536	2020-09-20 11:15:41.770035	ziomek	2
+537	2020-09-20 11:15:43.286794	tak - ziomek\r\n	1
+538	2020-09-20 11:21:03.364917	tak - fgfd	2
+539	2020-09-20 11:21:04.486982	tak - tak - fgfd\r\n	1
+540	2020-09-20 11:24:03.500252	h	2
+541	2020-09-20 11:24:04.804251	tak - h\r\n	1
+542	2020-09-20 11:42:21.307054	tak - ziomek	2
+543	2020-09-20 11:42:22.775933	tak - tak - ziomek\r\n	1
+544	2020-09-20 11:44:19.847999	tak - grzegorz	2
+545	2020-09-20 11:44:21.165933	tak - tak - grzegorz\r\n	1
+546	2020-09-20 11:45:58.098898	** Deamon - LQ Arm UI - uruchomiony...	2
+547	2020-09-20 11:45:59.597188	tak - ** Deamon - LQ Arm UI - uruchomiony...\r\n	1
+548	2020-09-20 13:22:34.26083	noi	2
+549	2020-09-20 13:22:35.578465	tak - noi\r\n	1
+550	2020-09-20 13:22:44.982735	ar	2
+551	2020-09-20 13:22:46.566247	tak - ar\r\n	1
+\.
+
+
+--
+-- Data for Name: lq_slot; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.lq_slot (id, kod_napoju, nazwa_napoju, ilosc) FROM stdin;
+1	VOD1	Wódka	500
+2	WHY1	Whisky	500
+3	RUM1	Rum Capitain Morgan	500
+\.
+
+
+--
+-- Data for Name: naczynia; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.naczynia (id, uzytkownik_login, akt_drink, nalany) FROM stdin;
+1	\N	default	f
+2	\N	default	f
+3	\N	default	f
+4	\N	default	f
+5	\N	default	f
+\.
+
+
+--
+-- Data for Name: zakladkiui; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.zakladkiui (id, nazwa, link, ikona) FROM stdin;
+2	LISTA POLECEŃ	/lista	list.png
+1	STAN STOŁU	/	table.png
+3	KONSOLA	/konsola	console.png
+4	NAPOJE	/sloty	whiskey.png
+5	KREATOR DRINKÓŒ	/drinki	cocktail.png
+\.
+
+
+--
+-- Name: drink_id_drinka_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.drink_id_drinka_seq', 1, true);
+
+
+--
+-- Name: komendy_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.komendy_id_seq', 78, true);
+
+
+--
+-- Name: konsola_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.konsola_id_seq', 551, true);
+
+
+--
+-- Name: lq_slot_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.lq_slot_id_seq', 3, true);
+
+
+--
+-- Name: naczynia_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.naczynia_id_seq', 5, true);
+
+
+--
+-- Name: zakladkiui_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.zakladkiui_id_seq', 5, true);
+
+
+--
+-- Name: drink drink_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.drink
+    ADD CONSTRAINT drink_pkey PRIMARY KEY (id_drinka);
+
+
+--
+-- Name: komendy komendy_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.komendy
+    ADD CONSTRAINT komendy_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: konsola konsola_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.konsola
+    ADD CONSTRAINT konsola_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: lq_slot lq_slot_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.lq_slot
+    ADD CONSTRAINT lq_slot_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: naczynia naczynia_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.naczynia
+    ADD CONSTRAINT naczynia_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: zakladkiui zakladkiui_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.zakladkiui
+    ADD CONSTRAINT zakladkiui_pkey PRIMARY KEY (id);
+
+
+--
+-- PostgreSQL database dump complete
+--
+
