@@ -12,7 +12,7 @@
     <tr> {% for lqo in lq %} <td>
         <!-- NACZYNIE 1 -->
         {% if lqo[0] < 4 %}
-        <div class="e" id="Kielich0" style="padding: 50px; text-align: center;   height: 70px; width: 70px;" >
+        <div class="e" id="Kielich0" style="padding: 70px; text-align: center; height: 80px; width: 70px;" >
             <img src="{{ url_for('static', filename = 'bottle.png') }}" width="32" height="32">
             
             <br>{{lqo[0]}}<br>{{lqo[1]}}<br>{{lqo[2]}}<br>{{lqo[3]}} ml</div>
@@ -20,14 +20,14 @@
         </td> {% endif %} </tr>
         {% endfor %}
 </table></td>
-
+<td width="50"> </td>
 <td>
     <table style="border: 0px;">
         <tr><h2>REWOLWER 2</h2></tr>
         <tr> {% for lqo in lq %} <td>
             <!-- NACZYNIE 1 -->
-            {% if ((lqo[0] < 7) and (lqo[0] > 3)) %}
-            <div class="e" id="Kielich0" style="padding: 50px; text-align: center;   height: 70px; width: 70px;" >
+            {% if lqo[0] < 7  %}
+            <div class="e" id="Kielich0" style="padding: 70px; text-align: center;   height: 80px; width: 70px;" >
                 <img src="{{ url_for('static', filename = 'bottle.png') }}" width="32" height="32">
                 
                 <br>{{lqo[0]}}<br>{{lqo[1]}}<br>{{lqo[2]}}<br>{{lqo[3]}} ml</div>
@@ -35,14 +35,15 @@
             </td> {% endif %} </tr>
             {% endfor %}
     </table></td>
+    <td width="50"> </td>
 
     <td>
         <table style="border: 0px;">
             <tr><h2>REWOLWER 3</h2></tr>
             <tr> {% for lqo in lq %} <td>
                 <!-- NACZYNIE 1 -->
-                {% ((lqo[0] < 10) and (lqo[0] > 6)) %}
-                <div class="e" id="Kielich0" style="padding: 50px; text-align: center;   height: 70px; width: 70px;" >
+                {% if lqo[0] < 10 %}
+                <div class="e" id="Kielich0" style="padding: 70px; text-align: center;   height: 80px; width: 70px;" >
                     <img src="{{ url_for('static', filename = 'bottle.png') }}" width="32" height="32">
                     
                     <br>{{lqo[0]}}<br>{{lqo[1]}}<br>{{lqo[2]}}<br>{{lqo[3]}} ml</div>

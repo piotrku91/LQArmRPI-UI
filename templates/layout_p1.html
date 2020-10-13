@@ -96,7 +96,18 @@
         text-transform: none;
 
         
+
+        
         }
+
+        .menu {
+    visibility: hidden;
+}
+
+figure:active .menu,
+figure:focus .menu {
+    visibility: visible;
+}
 
         /* Chrome, Safari and Opera syntax */
 :-webkit-full-screen {
@@ -165,11 +176,11 @@ button {
     <td> <center><a href="{{dzial[2]}}"><div class="e" id="Przycisk{{dzial[0]}}" style="padding: 20px;"><img src="{{ url_for('static', filename = dzial[3]) }}" width="32" height="32"><br>{{dzial[1]}}</div></a></center></td>
     {% endfor %}
 </tr>
-<tr><td colspan="3" align="top">
+<tr><td colspan="5" align="top">
         {% block content %}{% endblock %}
     
     </td></tr>
-<tr><td colspan="3" bgcolor="#3562CC">
+<tr><td colspan="5" bgcolor="#3562CC">
     <div id="footer">
         {% block footer %}<br>
         &copy; LQ Arm UI v0.3 by Piotr Kupczyk (dajmosster@gmail.com)

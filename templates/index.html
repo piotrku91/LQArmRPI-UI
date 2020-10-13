@@ -8,7 +8,7 @@
 <br><br><center>
 <table style="border: 0px;">
     <tr> <td>
-
+        <figure tabindex="-1">
         <!-- NACZYNIE 1 -->
         <div class="e" id="Kielich0" style="padding: 25px; text-align: center;   height: 70px; width: 70px;" >
             {% if naczynia_db[0][3] == 0 %} 
@@ -17,7 +17,31 @@
             {% if naczynia_db[0][3] == 1 %} 
             <img src="{{ url_for('static', filename = 'shot-glass_full.png') }}" width="32" height="32">
             {% endif %}
-            <br><br>{{naczynia_db[0][0]}}</div>
+            <br><br>{{naczynia_db[0][0]}}<br>{{naczynia_db[0][2]}}</div>
+            <nav class="menu">
+                <ul>
+                  <li>
+                    <form action="/ui/action_sender" method="POST">
+                      <input type="hidden" name="Polecenie" value="<srv_nalsin;0;>">
+                      <input name="OK" type="submit" value="Nalewanie" size="20">
+                  </form>
+                    
+                  </li>
+                  <li>
+                    <form action="/ui/action_sender" method="POST">
+                      <input type="hidden" name="Polecenie" value="<n_un;>">
+                      <input name="OK" type="submit" value="Odblokuj" size="20">
+                  </form>
+
+                  </li>
+                  <form action="/ui/action_sender" method="POST">
+                    <input type="hidden" name="Polecenie" value="<n_l;>">
+                    <input name="OK" type="submit" value="Zablokuj" size="20">
+                </form>
+                </ul>
+            </figure>
+            
+          
         
         </td>
         
@@ -35,7 +59,7 @@
                 {% if naczynia_db[4][3] == 1 %} 
                 <img src="{{ url_for('static', filename = 'shot-glass_full.png') }}" width="32" height="32">
                 {% endif %}
-                <br><br>{{naczynia_db[4][0]}}</div>
+                <br><br>{{naczynia_db[4][0]}}<br>{{naczynia_db[4][2]}}</div>
             
             </td>
 
@@ -54,7 +78,7 @@
             {% if naczynia_db[1][3] == 1 %} 
             <img src="{{ url_for('static', filename = 'shot-glass_full.png') }}" width="32" height="32">
             {% endif %}
-            <br><br>{{naczynia_db[1][0]}}</div>
+            <br><br>{{naczynia_db[1][0]}}<br>{{naczynia_db[1][2]}}</div>
         
         
         </td>
@@ -68,7 +92,7 @@
                 {% if naczynia_db[3][3] == 1 %} 
                 <img src="{{ url_for('static', filename = 'shot-glass_full.png') }}" width="32" height="32">
                 {% endif %}
-                <br><br>{{naczynia_db[3][0]}}</div></td></tr>
+                <br><br>{{naczynia_db[3][0]}}<br>{{naczynia_db[3][2]}}</div></td></tr>
 </table>
 
 
@@ -83,7 +107,7 @@
             {% if naczynia_db[2][3] == 1 %} 
             <img src="{{ url_for('static', filename = 'shot-glass_full.png') }}" width="32" height="32">
             {% endif %}
-            <br><br>{{naczynia_db[2][0]}}</div>
+            <br><br>{{naczynia_db[2][0]}}<br>{{naczynia_db[2][2]}}</div>
         
         
         </td></tr>

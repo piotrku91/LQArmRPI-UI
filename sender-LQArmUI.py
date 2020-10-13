@@ -26,10 +26,11 @@ if len(sys.argv)-1>0:
                while True:
 
                     userkom = input("~ ")
+
                     if userkom == "exit":
                          break
                     print("  Wysyłam do Arduino "+ userkom)
-          ## Wyślij do Arduino
+                    ## Wyślij do Arduino
                     ser.write(userkom.encode())
                     r = req.post('http://'+ip+':5000/db/insert_logcmd',data={'log_newcmd': userkom, 'log_infc': 2})
 
