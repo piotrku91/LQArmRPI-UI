@@ -3,7 +3,7 @@
 from config import config
 import serial
 import psycopg2
-from playsound import playsound
+#from playsound import playsound
 import requests as req
 params = config("settings.ini","main")
 devadd = params["serial_dev_add"]
