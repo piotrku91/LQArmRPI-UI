@@ -4,6 +4,5 @@ It is prototype of Web GUI for my Electronic project (LQArm) but finally I choos
 
 It's using Python, PySerial, Flask framework, PostgreSQL database, ninja2 templates (flask cooperation).
 
-
-
 ![Screenshot](screen.png)
+
