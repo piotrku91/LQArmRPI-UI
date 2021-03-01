@@ -5,7 +5,7 @@
 {% block title %}Lista dostępnych poleceń{% endblock %}
 {% block content %}
 
-<table align="top" bgcolor="silver"  width="100%">
+<table align="top" bgcolor="silver"  width="50%">
 {% for wpis in db %}
 
 <tr><td bgcolor="silver" style="border: 1px solid black"><font color="blue"><h3>{{wpis[0]}}.{{wpis[1]}} </h3></font></td><td>{{wpis[2]}}<br></td></tr>

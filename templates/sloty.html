@@ -1,0 +1,68 @@
+<!doctype html>
+
+
+{% extends "layout_p1.html" %}
+{% block title %}Stan stołu{% endblock %}
+
+{% block content %}
+<br><br><center>
+    <table><tr><td>
+<table style="border: 0px;">
+    <tr><h2>REWOLWER 1</h2></tr>
+    <tr> {% for lqo in lq %} <td>
+        <!-- NACZYNIE 1 -->
+        {% if lqo[0] < 4 %}
+        <div class="e" id="Kielich0" style="padding: 70px; text-align: center; height: 80px; width: 70px;" >
+            <img src="{{ url_for('static', filename = 'bottle.png') }}" width="32" height="32">
+            
+            <br>{{lqo[0]}}<br>{{lqo[1]}}<br>{{lqo[2]}}<br>{{lqo[3]}} ml</div>
+            
+        </td> {% endif %} </tr>
+        {% endfor %}
+</table></td>
+<td width="50"> </td>
+<td>
+    <table style="border: 0px;">
+        <tr><h2>REWOLWER 2</h2></tr>
+        <tr> {% for lqo in lq %} <td>
+            <!-- NACZYNIE 1 -->
+            {% if lqo[0] < 7  %}
+            <div class="e" id="Kielich0" style="padding: 70px; text-align: center;   height: 80px; width: 70px;" >
+                <img src="{{ url_for('static', filename = 'bottle.png') }}" width="32" height="32">
+                
+                <br>{{lqo[0]}}<br>{{lqo[1]}}<br>{{lqo[2]}}<br>{{lqo[3]}} ml</div>
+                
+            </td> {% endif %} </tr>
+            {% endfor %}
+    </table></td>
+    <td width="50"> </td>
+
+    <td>
+        <table style="border: 0px;">
+            <tr><h2>REWOLWER 3</h2></tr>
+            <tr> {% for lqo in lq %} <td>
+                <!-- NACZYNIE 1 -->
+                {% if lqo[0] < 10 %}
+                <div class="e" id="Kielich0" style="padding: 70px; text-align: center;   height: 80px; width: 70px;" >
+                    <img src="{{ url_for('static', filename = 'bottle.png') }}" width="32" height="32">
+                    
+                    <br>{{lqo[0]}}<br>{{lqo[1]}}<br>{{lqo[2]}}<br>{{lqo[3]}} ml</div>
+                    
+                </td> {% endif %} </tr>
+                {% endfor %}
+        </table></td>
+
+
+
+
+
+</tr></table>
+
+
+
+<br><br>
+</center>
+
+
+{% endblock %}
+

@@ -3,6 +3,7 @@
 from config import config
 import serial
 import psycopg2
+#from playsound import playsound
 import requests as req
 params = config("settings.ini","main")
 devadd = params["serial_dev_add"]
@@ -25,7 +26,14 @@ while True:
     if len(serBarCode) >= 1:
         Odczytana=serBarCode.decode("utf-8")
         print(Odczytana)
+        # playsound('wosh.wav')
         r = req.post('http://'+ip+':5000/db/insert_logcmd',data={'log_newcmd': Odczytana, 'log_infc': 1})
+
+        if Odczytana.find("ar_rtn")>-1:
+             part = Odczytana.split(";")
+             for i in part[1:(len(part)-1)]:
+                  print(i)
+     
 
         
        
